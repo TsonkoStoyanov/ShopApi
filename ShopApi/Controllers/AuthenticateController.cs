@@ -94,6 +94,7 @@ namespace ShopApi.Controllers
             {
                 userId = user.Id,
                 username = user.UserName,
+                email = user.Email,
                 token = new JwtSecurityTokenHandler().WriteToken(token),
                 expiration = token.ValidTo,
                 role = userRoles[0]
