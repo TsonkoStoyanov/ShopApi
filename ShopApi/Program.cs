@@ -66,7 +66,7 @@ builder.Services.Configure<StripeOptions>(options =>
     options.WebhookSecret = builder.Configuration["Stripe:WebhookSecret"];
     options.Price = builder.Configuration["Stripe:Price"];
     options.PaymentMethodTypes = builder.Configuration["Stripe:PaymentMethodTypes"].Split(",").ToList();
-    options.Domain = builder.Configuration["builder.Configuration:Domain"];
+    options.Domain = builder.Configuration["Stripe:Domain"];
     options.SucessUrl = builder.Configuration["Stripe:SuccessUrl"];
     options.CancelUrl = builder.Configuration["Stripe:CancelUrl"];    
 });

@@ -33,9 +33,9 @@
             try
             {
                 var session = await service.CreateAsync(options);
-                return Ok(session.Url);
+                return Ok(new SessionResponse {SessionId = session.Id});
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 throw;
             }
