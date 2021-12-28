@@ -3,6 +3,6 @@
 namespace ShopApi.Data.Models
 {
     public class ShopUser : IdentityUser
-    {
+    {        
     }
 }

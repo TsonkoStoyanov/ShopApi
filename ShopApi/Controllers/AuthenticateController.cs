@@ -26,7 +26,7 @@ namespace ShopApi.Controllers
         }
 
         [HttpPost]
-        [Route("SignIn")]
+        [Route(nameof(SignIn))]
         public async Task<IResult> SignIn([FromBody] SignInDto model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
@@ -41,6 +41,7 @@ namespace ShopApi.Controllers
                 {
                     userId = user.Id,
                     username = user.UserName,
+                    email = user.Email,
                     token = new JwtSecurityTokenHandler().WriteToken(token),
                     expiration = token.ValidTo,
                     role = userRoles[0]
@@ -53,7 +54,7 @@ namespace ShopApi.Controllers
 
 
         [HttpPost]
-        [Route("signUp")]
+        [Route(nameof(SignUp))]
         public async Task<IResult> SignUp([FromBody] SignUpDto model)
         {
             var userExists = await _userManager.FindByNameAsync(model.Username);
@@ -100,7 +101,7 @@ namespace ShopApi.Controllers
         }
 
         [HttpPost]
-        [Route("register-admin")]
+        [Route(nameof(RegisterAdmin))]
         public async Task<IResult> RegisterAdmin([FromBody] SignUpDto model)
         {
             var userExists = await _userManager.FindByNameAsync(model.Username);
@@ -137,7 +138,7 @@ namespace ShopApi.Controllers
 
         [Authorize]
         [HttpGet]
-        [Route("signOut")]
+        [Route(nameof(SignOut))]
         public async Task<IResult> SignOut()
         {
             var jwt = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");

@@ -188,7 +188,7 @@ namespace ShopApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("ShopApi.Data.Models.ShopUser", b =>

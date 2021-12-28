@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ShopApi.Data.Context;
 using ShopApi.Data.Models;
+using ShopApi.Data.Models.Stripe;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -55,6 +56,20 @@ builder.Services.AddAuthentication(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.Configure<StripeOptions>(options =>
+{
+    var stripeSection = builder.Configuration["Stripe"];
+
+    options.PublishableKey = builder.Configuration["Stripe:PublishableKey"];
+    options.SecretKey = builder.Configuration["Stripe:SecretKey"];
+    options.WebhookSecret = builder.Configuration["Stripe:WebhookSecret"];
+    options.Price = builder.Configuration["Stripe:Price"];
+    options.PaymentMethodTypes = builder.Configuration["Stripe:PaymentMethodTypes"].Split(",").ToList();
+    options.Domain = builder.Configuration["builder.Configuration:Domain"];
+    options.SucessUrl = builder.Configuration["Stripe:SuccessUrl"];
+    options.CancelUrl = builder.Configuration["Stripe:CancelUrl"];    
+});
 
 var app = builder.Build();
 

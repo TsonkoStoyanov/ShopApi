@@ -50,7 +50,7 @@ namespace ShopApi.Controllers
 
             if (product == null)
             {
-                return Results.NotFound();
+                return Results.NotFound(new Response { Status = ResponseStatus.Error, Message = "Product not found!" });
             }
 
             //TODO: Automapper
@@ -108,7 +108,7 @@ namespace ShopApi.Controllers
 
             if (product == null)
             {
-                return Results.NotFound();
+                return Results.NotFound(new Response { Status = ResponseStatus.Error, Message = "Product not found!" });
             }
 
             //TODO: Automapper
